@@ -1,0 +1,23 @@
+<h1>Notifications</h1>
+<ol>
+  <ng-container *ngIf="notifications">
+    <ng-container *ngFor="let notification of notifications">
+      <li>
+        <a [routerLink]="['/users/', notification.actor_id]"
+          >User-{{ notification.actor_id }}</a
+        >
+        have {{ notification.action }} a {{ notification.notifiable_type }} on
+        your
+        <b>
+          <a [routerLink]="['/tweets/show/', notification.tweet_id]"
+            >tweet# {{ notification.tweet_id }}</a
+          ></b
+        >
+      </li>
+    </ng-container>
+  </ng-container>
+</ol>
+
+<ng-container *ngIf="responseMsg">
+  <h4>{{ responseMsg }}</h4>
+</ng-container>

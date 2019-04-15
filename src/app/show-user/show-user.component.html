@@ -1,0 +1,73 @@
+<div *ngIf="response_msg">
+  <h2>{{ response_msg }}</h2>
+</div>
+
+<div *ngIf="user">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12">
+        <ul class="follow-ul">
+          <h1>User Profile</h1>
+          <div class="user-info">
+            Name: <strong id="name">{{ user.name }}</strong
+            ><br />
+            User Name: <strong id="user-name">{{ user.user_name }}</strong
+            ><br />
+            Email: <strong id="email">{{ user.email }}</strong
+            ><br />
+            Tweets: {{ tweets.length }} | following: {{ user.following }} |
+            followers: {{ user.followers }}<br />
+            <ng-container *ngIf="showFollowButton(user)">
+              <ng-container *ngIf="isFollowing(user); else: follow">
+                <button class="btn btn-primary" (click)="unFollowUser(user)">Unfollow</button>
+              </ng-container>
+              <ng-template #follow>
+                <button class="btn btn-primary" (click)="followUser(user)">Follow</button>
+              </ng-template>
+            </ng-container>
+          </div>
+        </ul>
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <div>
+          <div *ngIf="tweets">
+            <div class="tweets">
+              <div *ngFor="let tweet of tweets">
+                <div class="row card tweet">
+                  <img
+                    src="/assets/images/img_avatar.png"
+                    class="avatar"
+                    style="width:50px;height:50px"
+                  />
+                  <div class="title">
+                    <a [routerLink]="['/tweets/show/', tweet.id]"
+                      ><b> {{ tweet.tweet_title }}</b></a
+                    >
+                    .{{ tweet.user.name }}@<a
+                      [routerLink]="['/users/', tweet.user.id]"
+                      ><b> {{ tweet.user.user_name }}</b></a
+                    >
+                  </div>
+                  <div class="tweet-content">
+                    <p>{{ tweet.tweet_content }}</p>
+                    <div *ngIf="tweet.cover_picture_url">
+                      <img
+                        [src]="tweet.cover_picture_url"
+                        class="tweet-image"
+                      />
+                    </div>
+                  </div>
+                  <div class="tweet-likes">
+                    <i class="fa fa-comment" style="font-size:18px"></i>
+                    {{ tweet.comments.length }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-12"></div>
+    </div>
+  </div>
+</div>

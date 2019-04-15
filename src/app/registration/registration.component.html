@@ -1,0 +1,22 @@
+
+<div>
+  <h3>Registration Form</h3>
+  <label>Name:
+      <input #name name='name'/>
+  </label><br>
+  <label>User Name:
+      <input #user_name name='user_name' />
+  </label><br>
+  <label>Email:
+    <input #email name='email' />
+  </label><br>
+  <label>password:
+    <input #pwd name='pwd'/>
+  </label><br>
+  <button (click)="signUp(name.value,user_name.value,email.value,pwd.value);">
+    sign Up
+  </button>
+  <div *ngIf="response_msg">
+    <h5> {{ response_msg }}</h5>
+  </div>
+</div>

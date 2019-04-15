@@ -1,0 +1,21 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-lg-7">
+        <div class="new-tweet">
+            <h3>New Tweet</h3>
+            <input #title name='name' type="text" class="form-control" id="tweet-title" placeholder="Enter Title here..."/><br>
+            <textarea #content name='user_name' placeholder="Enter Content here..." class="form-control" rows="13" id="tweet-content" ></textarea><br>
+            <input  #fileInput type="file" (change)="onFileChanged($event)" style="margin-left: 23px;padding-bottom: 10px;"><br>
+            <button (click)="addTweet(title.value, content.value)" class="btn btn-success" style="margin-left: 190px;width: 180px">
+              Tweet
+            </button>
+            <div *ngIf="response_msg">
+              <h5> {{ response_msg }}</h5>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+</div>

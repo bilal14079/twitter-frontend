@@ -1,0 +1,59 @@
+<div *ngIf="tweet">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-sm-12"></div>
+      <div class="col-lg-6 col-sm-12 tweet card">
+        <img
+          src="/assets/images/img_avatar.png"
+          class="avatar"
+          style="width:44px;height:auto;"
+        />
+        <div class="title">
+          <a [routerLink]="['/tweets/show/', tweet.id]"
+            ><b> {{ tweet.tweet_title }}</b></a
+          >
+          .{{ tweet.user.name }}@<a [routerLink]="['/users/', tweet.user.id]"
+            ><b> {{ tweet.user.user_name }}</b></a
+          >
+        </div>
+        <div class="tweet-content">
+          <p>{{ tweet.tweet_content }}</p>
+          <div *ngIf="tweet.cover_picture_url">
+            <img [src]="tweet.cover_picture_url" class="tweet-image" />
+          </div>
+        </div>
+        <div class="tweet-likes">
+          <i class="fa fa-comment" style="font-size:18px"></i>
+          {{ tweet.comments.length }}
+        </div>
+        <div *ngIf="tweet.comments">
+          <h4>Comments</h4>
+          <ul *ngFor="let comment of tweet.comments">
+            <li>{{ comment.comment_body }}</li>
+          </ul>
+          <textarea
+            #comment
+            name="comment_body"
+            placeholder="Comment here..."
+            class="form-control"
+            rows="4"
+          ></textarea
+          ><br />
+          <div *ngIf="comment_msg">
+            <p style="color:red">{{ comment_msg }}</p>
+          </div>
+          <button
+            (click)="addComment(tweet.id, comment.value)"
+            class="btn btn-success"
+            style="width: 100px"
+          >
+            Comment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="response_msg">
+  <h1>{{ response_msg }}</h1>
+</div>

@@ -1,0 +1,21 @@
+
+
+<div *ngIf="!loggedIn">
+  <div>
+    <label>Email:
+      <input #email name="email" required  type="email" />
+    </label><br>
+    <label>password:
+      <input #pwd name="pwd" required type="password" />
+    </label><br>
+    <button (click)="signIn(email.value,pwd.value);">
+      login
+    </button>
+    <div *ngIf="error_msg">
+      <h5> {{ error_msg }}</h5>
+    </div>
+    <div *ngIf="current_user">
+      <h2>Welcome {{current_user.name | uppercase}} </h2>   
+    </div>
+  </div>
+</div>

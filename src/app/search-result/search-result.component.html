@@ -1,0 +1,19 @@
+<div *ngFor="let user of users">
+    <div class="row">
+        <div class="col">
+          <section>             
+              <div class="tweets">
+                  <div class="container">
+                      <div class="row tweet">
+                          <div class="col-lg-7">
+                            <div class="user-name">
+                              <b> {{user.name}}</b>@<a [routerLink]="['/users/',user.id]" ><b> {{user.user_name}}</b></a> 
+                            </div>
+                          </div>
+                      </div>                  
+                    </div>
+              </div>
+          </section>  
+        </div>
+      </div>  
+</div>
